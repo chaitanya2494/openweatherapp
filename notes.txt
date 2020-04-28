@@ -1,0 +1,30 @@
+our aim is to build a weather map
+user searches a location 
+our code will fetch the weather information from open weather and display it
+design specs
+1. input text box where user can enter the city name
+2. validate the city name such that it should be minimum three characters and max 20 characters, contains only alphabets
+3. to maintain uniformity, all input text should be lower case
+4. a table that is visible only if user enters a valid city name ( that is: open weather map gives result)
+5. recent list of search cities on the right hand side
+
+
+var regex = /^[a-zA-Z]{3,20}$/; 
+
+
+function validCityName() {
+    var name = $("#cityName").val();
+    if (!name) {
+        $(".error").text("City Name Cannot Be Empty");
+        return false;
+    }
+    var regex = /^[a-zA-Z]*$/;
+    if (!regex.test(name)) {
+        $(".error").text("only alphabets allowed");
+        return false;
+    }
+    $(".error").text("");
+    return true;
+}
+
+api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
