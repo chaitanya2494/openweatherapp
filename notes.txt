@@ -28,3 +28,13 @@ function validCityName() {
 }
 
 api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
+
+api key = 3c7fb38c0ebc7b5f0e45f32f19331a88
+api.openweathermap.org/data/2.5/forecast?q={city name}&appid=3c7fb38c0ebc7b5f0e45f32f19331a88
+api.openweathermap.org/data/2.5/forecast?q=kitchener&appid=3c7fb38c0ebc7b5f0e45f32f19331a88
+making an ajax call results in either
+1. success - 200 - the server responded with the required data
+2. error - 404 - u r hitting the wrong url
+- 500+ - 2 possibilities - 1. you are requesting the data in wrong format or 
+2. your backend code is not working.
+all these information can be visualized in inspect element / network tab

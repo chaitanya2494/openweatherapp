@@ -24,8 +24,7 @@
             </div>
             <div class="col s12">
                 <button class="btn waves-effect waves-light col s12" type="submit" name="action" id="submit"
-                    disabled>Get Weather
-                    Info
+                    disabled>Get Weather Info
                 </button>
             </div>
 
@@ -35,7 +34,11 @@
         <div class="row">
             <div class="col s8">
                 <h2 class="hide">Weather Info</h2>
-                <table style="display: none;">
+                <table style="display: none;" id="weatherInfo">
+                    <tr>
+                        <th>City</th>
+                        <td></td>
+                    </tr>
                     <tr>
                         <th>Humidity</th>
                         <td>39</td>
@@ -55,6 +58,8 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+
+    <script src="js/constant.js"></script>
 
     <script src="js/app.js"></script>
 
