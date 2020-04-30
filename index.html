@@ -7,6 +7,7 @@
     <title>weather forecast</title>
     <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 </head>
@@ -15,18 +16,20 @@
 
     <div class="container">
         <div class="row">
-            <div class="col m12">
-                <div class="input-field">
-                    <input placeholder="Enter the city name" id="cityName" type="text" class="validate">
-                    <label for="cityName">City Name</label>
+            <form action="" id="inputForm">
+                <div class="col m12">
+                    <div class="input-field">
+                        <input placeholder="Enter the city name" id="cityName" type="text" class="validate">
+                        <label for="cityName">City Name</label>
+                    </div>
+                    <div class="error"></div>
                 </div>
-                <div class="error"></div>
-            </div>
-            <div class="col s12">
-                <button class="btn waves-effect waves-light col s12" type="submit" name="action" id="submit"
-                    disabled>Get Weather Info
-                </button>
-            </div>
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light col s12" type="submit" name="action" id="submit">Get
+                        Weather Info
+                    </button>
+                </div>
+            </form>
 
         </div>
     </div>
@@ -39,21 +42,57 @@
                         <th>City</th>
                         <td></td>
                     </tr>
-                    <tr>
-                        <th>Humidity</th>
-                        <td>39</td>
-                    </tr>
-                    <tr>
-                        <th>Temperature</th>
-                        <td>40</td>
-                    </tr>
+
+
+
                 </table>
             </div>
             <div class="col s4">
-                <h2>Recent Search</h2>
+                <h4>Recent Search</h4>
+                <ul class="collection" id="recentSearch">
+
+                </ul>
             </div>
         </div>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h4>Confirmation required</h4>
+            <p>Are you sure you want to delete or remove the city</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" class=" waves-effect waves-green btn-flat btn-ok">Ok</a>
+        </div>
+    </div>
+
+    <script type="text/html" id="recentSearchLiTemplate">
+<% _.forEach(selected,function(item) { %>
+
+    <li class="collection-item">
+        <div class="row">
+        <div class="col s12">
+        <%- _.toUpper(item.cityName) %>
+        <a class="btn-floating btn-small waves-effect waves-light red right btn-remove"><i class="material-icons">delete_outline</i></a>
+        </div>
+        <div class="col s12">
+        <small class="right"><%- moment(item.timestamp, 'DD/MM/YYYY HH:mm:SS').fromNow() %></small>
+        </div>
+        </div>
+        
+</li>
+
+
+<% }) %>
+        
+    
+    </script>
+
+    <script src="node_modules/moment/moment.js"></script>
+
+    <script src="node_modules/lodash/lodash.min.js"></script>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 

@@ -4,7 +4,6 @@ $(document).ready(function () { //coding to be executed only after document is r
     // watchSubmitClick();
     watchInputFormSubmit();
     renderRecentSearch();
-    watchRemoveRecentSearch();
 
 })
 
@@ -91,27 +90,23 @@ function renderRecentSearch() {
 
     selected.reverse();
 
-    var compiled = _.template($("#recentSearchLiTemplate").html());
-    var li$ = compiled({ selected: selected });
+    li$ = '';
+    selected.forEach(function (item) {
+
+
+        li$ += '<li class="collection-item">';
+        li$ += '<div class="row">';
+        li$ += '<div class="col s12">';
+        li$ += item.cityName;
+        li$ += '<span class="right material-icons">delete_outline</span>';
+        li$ += '</div>';
+        li$ += '<div class="col s12">';
+        li$ += '<small class="right">' + moment(item.timestamp, 'DD/MM/YYYY HH:mm:SS').fromNow() + '</small>';
+        li$ += '</div>';
+        li$ += '</div>';
+        li$ += '</li>';
+    });
     $("#recentSearch").html(li$);
-
-    // li$ = '';
-    // selected.forEach(function (item) {
-
-
-    //     li$ += '<li class="collection-item">';
-    //     li$ += '<div class="row">';
-    //     li$ += '<div class="col s12">';
-    //     li$ += _.toUpper(item.cityName);
-    //     li$ += '<span class="right material-icons">delete_outline</span>';
-    //     li$ += '</div>';
-    //     li$ += '<div class="col s12">';
-    //     li$ += '<small class="right">' + moment(item.timestamp, 'DD/MM/YYYY HH:mm:SS').fromNow() + '</small>';
-    //     li$ += '</div>';
-    //     li$ += '</div>';
-    //     li$ += '</li>';
-    // });
-    // $("#recentSearch").html(li$);
 
 }
 
@@ -154,36 +149,4 @@ function validCityName() {
     }
     $(".error").text(error);
     return !error; //not of error = valid city name = returns true
-}
-
-function watchRemoveRecentSearch() {
-    $(document).on("click", "#recentSearch .btn-remove", function () {
-        // var verify = confirm("Are you sure you want to remove this city");
-        // if (!verify) { // if user clicks on cancel confirm retunrs false
-        //     return; // since user clicked on cancel do not execute the code for removal
-        // }
-
-        //since the li elements are rendered after document loaded it is called as dynamic elements
-        //jquery will work only on static elements eg. submit button click
-        //so capture the click on the document, identify where the click is originated and execute the logic
-
-
-
-        // var elem = document.getElementById("confirmModal")
-        // var instance = M.Modal.getInstance(elem);
-        // instance.open();
-        console.log($("#confirmModal").length);
-        $("#confirmModal").modal('open');
-
-        return;
-
-        var liIndex = $(this).closest("li").index(); //capture the index of the li element
-        previouslySelected = localStorage.getItem('recentSearch'); // get the previously stored cities from local storage
-        selected = JSON.parse(previouslySelected); //convert the string data into array
-        selected.reverse(); // since we reversed the local storage while populating
-        selected.splice(liIndex, 1); //remove the city name by index 
-        localStorage.setItem("recentSearch", JSON.stringify(selected)); //convert the array to string and store in local storage
-        $(this).closest("li").remove(); //removes the element
-        console.log(liIndex);
-    })
 }
