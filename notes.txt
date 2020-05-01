@@ -38,3 +38,18 @@ making an ajax call results in either
 - 500+ - 2 possibilities - 1. you are requesting the data in wrong format or 
 2. your backend code is not working.
 all these information can be visualized in inspect element / network tab
+
+
+1. get the weather information. -read -method=Get
+2. store the cityName and time stamp. -create -method=post
+3. update the cityName and time stamp. -update -method=put
+4. delete the city name and time stamp. -delete -method=delete
+
+get url/cities-fetches all the cities
+get url/cities/cityId - fetch a specific city based on the cityId
+post url/cities, payload-cityInfo creates a new city and saves cityInfo
+put url/cities, payload-cityInfo updates all cities with cityInfo
+put url/cities/cityId, payload-cityInfo updates specific city based on cityId with cityInfo
+delete url/cities, deletes all cities
+delete url/cities/CityId, deletes specific city based on cityId
+
