@@ -12,7 +12,7 @@
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "jquery": "^3.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0"
   },
